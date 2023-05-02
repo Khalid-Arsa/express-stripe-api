@@ -1,7 +1,7 @@
-import { getStripe } from "../services/stripe.service";
+import { createCustomer } from "../services/stripeCustomer.service";
 
 export class StripeController {
-  get() {
-    return getStripe();
+  create() {
+    return createCustomer();
   }
 }

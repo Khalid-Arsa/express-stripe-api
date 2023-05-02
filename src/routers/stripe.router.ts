@@ -4,6 +4,6 @@ import { StripeController } from '../controllers/stripe.controller';
 const router = express.Router();
 const stripeController = new StripeController()
 
-router.get('/data', stripeController.get)
+router.post('/create-customer', stripeController.create)
 
 export default router;
