@@ -1,9 +1,10 @@
 import express from 'express';
-import { StripeController } from '../controllers/stripe.controller';
+import { StripeCustomerController } from '../controllers/StripeCustomer.controller';
 
 const router = express.Router();
-const stripeController = new StripeController()
+const stripeCustomerController = new StripeCustomerController()
 
-router.post('/create-customer', stripeController.create)
+// Customer
+router.post('/create-customer', stripeCustomerController.create)
 
 export default router;
