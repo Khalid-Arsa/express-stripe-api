@@ -5,6 +5,8 @@
 import { config } from "./config";
 import { server } from "./server";
 
-server.listen(config.port, async () => {
-  console.log(`The server is listening on port: ${config.port}`)
-});
+if(process.env.NODE_ENV !== "test"){
+  server.listen(config.port, async () => {
+    console.log(`The server is listening on port: ${config.port}`)
+  });
+}
