@@ -15,8 +15,7 @@ export async function stripeCreateCheckoutSession(
   next: NextFunction
 ) {
   const { product } = req.body;
-
-  const checkout: Stripe.Checkout.Session = await stripe.checkout.sessions.create({
+  const params: Stripe.Checkout.SessionCreateParams = {
     success_url: succ_url,
     cancel_url: can_url, 
     mode: "payment",
@@ -33,9 +32,12 @@ export async function stripeCreateCheckoutSession(
       },
     ],
     payment_method_types: ["card"]
-  });
+  }
+
+  const checkout: Stripe.Checkout.Session = await stripe.checkout.sessions.create(params);
 
   return res.status(200).json({
+    success: true,
     message: "Successfully create checkout",
     checkoutId: checkout.id
   })
