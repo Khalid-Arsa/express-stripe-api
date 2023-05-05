@@ -11,8 +11,9 @@ export async function createCustomer(
   res: Response,
   next: NextFunction
 ) {
-  const { email } = req.body
+  const { email, name } = req.body;
   const params: Stripe.CustomerCreateParams = {
+    name: name,
     email: email,
   };
 
@@ -22,5 +23,22 @@ export async function createCustomer(
     success: true,
     message: "Successfully created customer",
     customerId: customer.id,
+  });
+}
+
+export async function retrieveCustomer(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const { id } = req.params;
+
+  const customer: Stripe.Response<Stripe.Customer | Stripe.DeletedCustomer> =
+    await stripe.customers.retrieve(id);
+
+  return res.status(200).json({
+    success: true,
+    message: "Successfully retrieve customer",
+    customer
   });
 }
