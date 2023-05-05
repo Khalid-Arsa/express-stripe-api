@@ -1,9 +1,16 @@
 import express from 'express';
-import { StripeController } from '../controllers/stripe.controller';
+import { StripeCustomerController } from '../controllers/StripeCustomer.controller';
+import { StripeCheckoutSessionController } from '../controllers/StripeCheckoutSession.controller';
 
 const router = express.Router();
-const stripeController = new StripeController()
+const stripeCustomerController = new StripeCustomerController()
+const stripeCheckoutSessionController = new StripeCheckoutSessionController()
 
-router.get('/data', stripeController.get)
+// Customer
+router.post('/create-customer', stripeCustomerController.create)
+router.get('/retrieve-customer/:id', stripeCustomerController.get)
+
+// Checkout Session
+router.post('/create-checkout-session', stripeCheckoutSessionController.create)
 
 export default router;
