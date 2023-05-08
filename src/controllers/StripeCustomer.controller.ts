@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { createCustomer, retrieveCustomer } from "../services/StripeCustomer.service";
+import { createCustomer, retrieveCustomer } from "../services/stripeCustomer.service";
 
 export class StripeCustomerController {
   create(req: Request, res: Response, next: NextFunction) {

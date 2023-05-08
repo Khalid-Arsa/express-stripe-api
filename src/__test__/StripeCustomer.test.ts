@@ -21,4 +21,8 @@ describe("POST api/stripe/create-customer", () => {
       expect(typeof customerId === "string").toBe(true)
       expect(success).toBe(true)
   })
+
+  // test("RETRIEVE CUSTOMER: It should return correct data", async () => {
+    
+  // })
 })
