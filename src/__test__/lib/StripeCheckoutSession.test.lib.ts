@@ -14,7 +14,7 @@ export const createStripeCheckoutSessionInput: Stripe.Checkout.SessionCreatePara
         product_data: {
           name: "Bag Classic Uno",
         },
-        unit_amount: 9000 * 100,
+        unit_amount: 9000,
       },
       quantity: 1,
     },
