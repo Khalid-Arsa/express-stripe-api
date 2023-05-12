@@ -26,7 +26,7 @@ export async function createCustomer(
   });
 }
 
-export async function retrieveCustomer(
+export async function findCustomer(
   req: Request,
   res: Response,
   next: NextFunction
@@ -40,5 +40,26 @@ export async function retrieveCustomer(
     success: true,
     message: "Successfully retrieve customer",
     customer
+  });
+}
+
+export async function findAllCustomer(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const customers: Stripe.Response<Stripe.ApiList<Stripe.Customer>> = await stripe.customers.list({
+    limit: 20
+  });
+  let customerEmail: string[] = []
+
+  for(let customer of customers.data) {
+    customerEmail.push(customer.email as string)
+  }
+  
+  return res.status(200).json({
+    success: true,
+    message: "Successfully retrieve customer",
+    customerEmail
   });
 }
