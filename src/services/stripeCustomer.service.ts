@@ -39,7 +39,7 @@ export async function findCustomer(
   return res.status(200).json({
     success: true,
     message: "Successfully retrieve customer",
-    customer
+    customer,
   });
 }
 
@@ -48,18 +48,39 @@ export async function findAllCustomer(
   res: Response,
   next: NextFunction
 ) {
-  const customers: Stripe.Response<Stripe.ApiList<Stripe.Customer>> = await stripe.customers.list({
-    limit: 20
-  });
-  let customerEmail: string[] = []
+  const customers: Stripe.Response<Stripe.ApiList<Stripe.Customer>> =
+    await stripe.customers.list({
+      limit: 20,
+    });
+  let customerList = [];
 
-  for(let customer of customers.data) {
-    customerEmail.push(customer.email as string)
+  for (let customer of customers.data) {
+    customerList.push({
+      email: customer.email,
+      id: customer.id
+    });
   }
-  
+
   return res.status(200).json({
     success: true,
     message: "Successfully retrieve customer",
-    customerEmail
+    customerList,
+  });
+}
+
+export async function deleteCustomer(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const { id } = req.params;
+
+  const deleted: Stripe.Response<Stripe.DeletedCustomer> =
+    await stripe.customers.del(id);
+
+  return res.status(200).json({
+    success: true,
+    message: "Successfully delete customer",
+    deleted,
   });
 }
