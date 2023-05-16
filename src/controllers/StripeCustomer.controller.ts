@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { createCustomer, findAllCustomer, findCustomer } from "../services/stripeCustomer.service";
+import { createCustomer, deleteCustomer, findAllCustomer, findCustomer } from "../services/stripeCustomer.service";
 
 export class StripeCustomerController {
   create(req: Request, res: Response, next: NextFunction) {
@@ -12,5 +12,9 @@ export class StripeCustomerController {
 
   getAll(req: Request, res: Response, next: NextFunction) {
     return findAllCustomer(req, res, next)
+  }
+
+  del(req: Request, res: Response, next: NextFunction) {
+    return deleteCustomer(req, res, next)
   }
 }
