@@ -7,8 +7,10 @@ const stripeCustomerController = new StripeCustomerController()
 const stripeCheckoutSessionController = new StripeCheckoutSessionController()
 
 // Customer
-router.post('/create-customer', stripeCustomerController.create)
-router.get('/retrieve-customer/:id', stripeCustomerController.get)
+router.post('/customer', stripeCustomerController.create)
+router.get('/customer/:id', stripeCustomerController.get)
+router.get('/customer', stripeCustomerController.getAll)
+router.delete('/customer/:id', stripeCustomerController.del)
 
 // Checkout Session
 router.post('/create-checkout-session', stripeCheckoutSessionController.create)
