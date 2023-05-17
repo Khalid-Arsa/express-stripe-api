@@ -76,7 +76,7 @@ export async function deleteCustomer(
   const { id } = req.params;
 
   const deleted: Stripe.Response<Stripe.DeletedCustomer> =
-    await stripe.customers.del(id);
+    await stripe.customers.del(id)
 
   return res.status(200).json({
     success: true,
